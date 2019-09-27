@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Inject} from '@angular/core';
 import {Router} from '@angular/router';
 import {UtilityService} from '../../services/utility.service';
 
@@ -6,14 +6,18 @@ import {Message} from 'primeng//api';
 import {MessageService} from 'primeng/api';
 
 import {MessageModule} from 'primeng/message';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
+export interface DialogData {
+  title: string;
+  txt: string;
+}
 
 @Component({
   selector: 'verify',
   templateUrl: 'verify.component.html',
   styleUrls: ['verify.component.scss']
 })
-
 
 export class VerifyComponent implements OnInit {
 
@@ -22,20 +26,23 @@ export class VerifyComponent implements OnInit {
 
 
   constructor (protected  messageService: MessageService, 
-    protected utilityService: UtilityService){}
+    protected utilityService: UtilityService,
+    public dialog: MatDialog){}
 
   ngOnInit() {
   }
+
+  
 
   verify(json_txt) {
     let json_obj = JSON.parse(json_txt)
     this.utilityService.verify(json_obj).subscribe(res => {
       console.log(res)
       if (res['res']==true){
-        this.sendNotification('success', 'El certificado es auténtico');
+        this.openDialog('success', 'LA CERTIFICACIÓN CONSULTADA ES AUTÉNTICA');
         this.success_msg = 'El certificado es auténtico';
       }else{
-        this.sendNotification('error', 'El certificado está alterado');
+        this.openDialog('error', 'El certificado está alterado');
         this.success_msg = 'El certificado está alterado';
       }
     });
@@ -43,7 +50,12 @@ export class VerifyComponent implements OnInit {
   }
 
 
-
+  openDialog(title, txt): void {
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      width: '250px',
+      data: {title: title, txt: txt}
+    });
+  }
 
   sendNotification(severity: string, detail: string) {
     this.messageService.add({
@@ -54,5 +66,25 @@ export class VerifyComponent implements OnInit {
   }
 
 
+
+}
+
+@Component({
+  selector: 'dialog-overview-example-dialog',
+  templateUrl: 'dialog.html',
+})
+export class DialogOverviewExampleDialog {
+  public txt = '';
+  public title = '';
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+      this.txt = data.txt;
+      this.title = data.title;
+    }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 
 }

@@ -1,30 +1,14 @@
-<div class="content">
-  <textarea rows="42" cols="50" #json_txt>
-  </textarea>
-  <button (click)="verify(json_txt.value)" pButton label="Verify" class="ui-button ui-button-secondary"></button>
-</div>
-
-<div id="success">
-    {{success_msg}}
-</div>
-
-<!-- <p-messages [(value)]="msgs"></p-messages> -->
-
-
-<p-toast class="confirmation-toast" position="center" key="confirmFork" [modal]="true" [baseZIndex]="5000">
-    <ng-template let-message pTemplate="message">
-        <div style="text-align: center">
-            <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
-            <h3>{{message.summary}}</h3>
-            <p>{{message.detail}}</p>
-        </div>
-        <div class="ui-g ui-fluid">
-            <div class="ui-g-6">
-                <button type="button" pButton (click)="onConfirm(message.data)" label="Yes" class="ui-button-success"></button>
-            </div>
-            <div class="ui-g-6">
-                <button type="button" pButton (click)="closeConfirmation()" label="No" class="ui-button-secondary"></button>
+<div class="junbo">
+        <div class="content">
+            <p>Bienvenido al Sistema Nacional de verificación de Certificados</p>
+            <div class="input">
+                <textarea class="md-textarea form-control" placeholder="Ingrese el objeto JSON correspondiente al certificado" id="json_txt" #json_txt>
+                </textarea>
+                <div>
+                <button (click)="verify(json_txt.value)" pButton label="Verificar" class="btn btn-success "></button> 
+                </div>
             </div>
         </div>
-    </ng-template>
-</p-toast>
+
+    
+</div>

@@ -20,3 +20,47 @@
         }
     }
 }
+
+.junbo .content p{
+    font-family: Montserrat;
+    color: #7EFC38;
+    font-weight: 500;
+    font-size: 27px;
+    line-height: 1.4;
+    font-weight: bold;
+    text-align: center;
+
+}
+
+.junbo .content{
+    width: inherit;
+    text-align: center;
+
+}
+
+.junbo{
+    padding-top: 100px;
+    background-color: inherit
+}
+
+.input #json_txt{
+    width: 479px;
+    height: 479px;
+    display: inline-grid;
+}
+
+.input #json_txt::placeholder{
+    font-family: Montserrat;
+    color: #2699FB;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.input div button{
+    background: #7EFC38 0% 0% no-repeat padding-box;
+    font-family: Montserrat;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1.4;
+    font-weight: 500;
+}
