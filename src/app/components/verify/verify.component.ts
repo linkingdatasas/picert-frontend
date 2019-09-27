@@ -42,7 +42,7 @@ export class VerifyComponent implements OnInit {
         this.openDialog('success', 'LA CERTIFICACIÓN CONSULTADA ES AUTÉNTICA');
         this.success_msg = 'El certificado es auténtico';
       }else{
-        this.openDialog('error', 'El certificado está alterado');
+        this.openDialog('error', 'LA CERTIFICACIÓN CONSULTADA NO ES AUTÉNTICA');
         this.success_msg = 'El certificado está alterado';
       }
     });
@@ -52,7 +52,8 @@ export class VerifyComponent implements OnInit {
 
   openDialog(title, txt): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      width: '250px',
+      width: '609px',
+      height: '219px',
       data: {title: title, txt: txt}
     });
   }
@@ -72,15 +73,22 @@ export class VerifyComponent implements OnInit {
 @Component({
   selector: 'dialog-overview-example-dialog',
   templateUrl: 'dialog.html',
+  styleUrls: ['dialog.scss']
 })
 export class DialogOverviewExampleDialog {
   public txt = '';
   public title = '';
+  public imgSrc ='';
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {
       this.txt = data.txt;
       this.title = data.title;
+      if (data.title=='success'){
+        this.imgSrc = 'assets/imgs/Grupo6.png';
+      }else{
+        this.imgSrc = 'assets/imgs/Grupo484.png';
+      }
     }
 
   onNoClick(): void {

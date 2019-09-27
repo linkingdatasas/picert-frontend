@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {VerifyComponent, DialogOverviewExampleDialog} from './components/verify/verify.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
+import {FooterComponent} from './components/footer/footer.component';
 import {MatDialogModule, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 import {UtilityService} from './services';
@@ -21,6 +22,7 @@ import {UtilityService} from './services';
     AppComponent,
     VerifyComponent,
     NavbarComponent,
+    FooterComponent,
     DialogOverviewExampleDialog
   ],
   entryComponents: [DialogOverviewExampleDialog],
